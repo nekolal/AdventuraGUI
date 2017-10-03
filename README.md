@@ -1,0 +1,2 @@
+# AdventuraGUI
+Adventura softwarové inženýrství
