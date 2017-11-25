@@ -8,12 +8,12 @@ package UI;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.FlowPane;
 import javafx.scene.paint.Paint;
 import javafx.scene.shape.Circle;
 import logika.IHra;
-import sun.applet.Main;
+import main.Main;
 import utils.Observer;
+import utils.ObserverNovaHra;
 
 /**
  *
@@ -43,4 +43,12 @@ public class Mapa extends AnchorPane implements Observer{
         this.setLeftAnchor(tecka, hra.getHerniPlan().getAktualniProstor().getPosX());
     }
     
+//    @Override
+    public void novaHra(IHra hra) {
+        hra.getHerniPlan().deleteObserver(this);
+        this.hra = hra;
+        hra.getHerniPlan().registerObserver(this);
+        update();
+        
+    }
 }

@@ -7,23 +7,34 @@ package UI;
 
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
+import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Menu;
 import javafx.scene.control.MenuBar;
 import javafx.scene.control.MenuItem;
 import javafx.scene.input.KeyCombination;
-import jdk.internal.org.objectweb.asm.Handle;
+import javafx.scene.web.WebView;
+import javafx.stage.Stage;
+import logika.Hra;
+import logika.IHra;
+import main.Main;
 
 /**
  *
  * @author nekl00
  */
 public class MenuPole extends MenuBar{
-    public MenuPole(){
+    
+    private Main main;
+    
+    public MenuPole(Main main){
+        this.main = main;
         init();
     }
     
     private void init(){
         Menu menuSoubor = new Menu("Adentura");
+
         
         MenuItem itemNovaHra = new MenuItem("Nová hra");
 //        MenuItem itemNovaHra = new MenuItem(new Image("Nová hra", new ImageView(Main.getClass.getresourcesAsStream("cesta"))));
@@ -31,9 +42,16 @@ public class MenuPole extends MenuBar{
         
         MenuItem itemKonec = new MenuItem("Konec");
         
-        menuSoubor.getItems().addAll(itemNovaHra, itemKonec);
+        Menu menuHelp = new Menu("Help");
+        MenuItem itemOProgramu = new MenuItem("O programu");
+        MenuItem itemNapoveda = new MenuItem("Napoveda");
         
-        this.getMenus().addAll(menuSoubor);
+        
+        menuSoubor.getItems().addAll(itemNovaHra, itemKonec);
+        menuHelp.getItems().addAll(itemOProgramu, itemNapoveda);
+        
+        
+        this.getMenus().addAll(menuSoubor, menuHelp);
         
         itemKonec.setOnAction(new EventHandler<ActionEvent>(){
             
@@ -43,5 +61,42 @@ public class MenuPole extends MenuBar{
                 System.exit(0);
             }
         });
+        
+        itemOProgramu.setOnAction(new EventHandler<ActionEvent>() {
+
+            @Override
+            public void handle(ActionEvent event) {
+                Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                alert.setTitle("O Adventure");
+                alert.setHeaderText("Toto je ma adventura");
+                alert.setContentText("Graficka verze adventury");
+                alert.initOwner(main.getPrimaryStage());
+                alert.showAndWait();
+            }
+        });
+        
+        itemNapoveda.setOnAction(new EventHandler<ActionEvent>() {
+
+            @Override
+            public void handle(ActionEvent event) {
+                Stage stage = new Stage();
+                stage.setTitle("Napoveda");
+                WebView webview = new WebView();
+                
+                webview.getEngine().load(Main.class.getResource("/zdroje/napoveda.html").toExternalForm());
+                
+                stage.setScene(new Scene(webview, 500, 500));
+                stage.show();
+            }
+        });
+               
+        itemNovaHra.setOnAction(new EventHandler<ActionEvent>() {
+
+            @Override
+            public void handle(ActionEvent event) {
+                main.novaHra();
+            }
+        });
+
     }
 }

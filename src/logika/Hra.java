@@ -17,6 +17,7 @@ public class Hra implements IHra {
     private SeznamPrikazu platnePrikazy;    // obsahuje seznam přípustných příkazů
     private HerniPlan herniPlan;
     private boolean konecHry = false;
+    private Batoh batoh ;
   
     
     /**
@@ -24,6 +25,7 @@ public class Hra implements IHra {
      */
     public Hra() {
         herniPlan = new HerniPlan();
+        batoh = new Batoh();
         platnePrikazy = new SeznamPrikazu();
         platnePrikazy.vlozPrikaz(new PrikazNapoveda(platnePrikazy));
         platnePrikazy.vlozPrikaz(new PrikazJdi(herniPlan));
@@ -107,7 +109,7 @@ public class Hra implements IHra {
         }
         return textKVypsani;
     }
-    
+       
     
      /**
      *  Nastaví, že je konec hry, metodu využívá třída PrikazKonec,

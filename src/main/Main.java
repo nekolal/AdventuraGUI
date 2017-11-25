@@ -7,13 +7,11 @@ package main;
 
 import UI.Mapa;
 import UI.MenuPole;
-import com.sun.javafx.collections.MapAdapterChange;
 import javafx.application.Application;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
@@ -21,48 +19,37 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.FlowPane;
-import javafx.scene.layout.StackPane;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import logika.Hra;
 import logika.IHra;
-import sun.applet.Main;
 import uiText.TextoveRozhrani;
 
 /**
  *
  * @author nekl00
  */
-public class NewFXMain extends Application {
-    private Object conterText;
+public class Main extends Application {
     
     private Mapa mapa;
     private MenuPole menu;
+    private IHra hra;
+    private TextArea centerText;
+    private Stage primaryStage;
     
     @Override
     public void start(Stage primaryStage) {
-        /*Button btn = new Button();
-        btn.setText("Start adventura");
-        btn.setOnAction(new EventHandler<ActionEvent>() {
-            
-            @Override
-            public void handle(ActionEvent event) {
-                IHra hra = new Hra();
-                TextoveRozhrani textoveRozhrani = new TextoveRozhrani(hra);
-                textoveRozhrani.hraj();
-            }
-        });*/
         
-        IHra hra = new Hra();
-        
+        this.primaryStage = primaryStage;
+        hra = new Hra();
         mapa = new Mapa(hra);
-        menu = new MenuPole();
+        menu = new MenuPole(this);
         
         BorderPane borderPane = new BorderPane();
         
-        TextArea centerText = new TextArea();
+        centerText = new TextArea();
         centerText.setText(hra.vratUvitani());
         centerText.setEditable(false);
         borderPane.setCenter(centerText);
@@ -108,14 +95,7 @@ public class NewFXMain extends Application {
         //menu adventury
         borderPane.setTop(menu);
         
-        
-        
-        /*TextoveRozhrani textoveRozhrani = new TextoveRozhrani(hra);
-        textoveRozhrani.hraj();*/
-        
-        
-       /* StackPane root = new StackPane();
-        root.getChildren().add();*/
+
         
         Scene scene = new Scene(borderPane, 700, 400);
         
@@ -144,5 +124,18 @@ public class NewFXMain extends Application {
                     }
         }
     }
-    
+
+    public void novaHra() {
+        hra = new Hra();
+        centerText.setText(hra.vratUvitani());
+        
+        //to same pro vsechny observery
+        mapa.novaHra(hra);
+    }
+    /**
+     * @return the primaryStage
+     */
+    public Stage getPrimaryStage() {
+        return primaryStage;
+    }
 }

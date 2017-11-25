@@ -5,10 +5,17 @@
  */
 package utils;
 
+import logika.IHra;
+
 /**
  *
  * @author nekl00
  */
 public interface Observer {
+    
     void update();
+    
+    void novaHra(IHra hra);
+    
+    //void aktualniProstor();
 }
