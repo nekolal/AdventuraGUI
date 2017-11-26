@@ -17,5 +17,4 @@ public interface Observer {
     
     void novaHra(IHra hra);
     
-    //void aktualniProstor();
 }

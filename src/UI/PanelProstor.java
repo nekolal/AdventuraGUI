@@ -6,14 +6,10 @@
 //
 //package UI;
 //
-//
-//import javafx.scene.control.TextArea;
-//import javafx.scene.image.Image;
-//import javafx.scene.image.ImageView;
-//import javafx.scene.layout.AnchorPane;
-//import javafx.scene.layout.BorderPane;
-//import javafx.scene.paint.Paint;
-//import javafx.scene.shape.Circle;
+//import javafx.scene.control.Label;
+//import javax.swing.JFrame;
+//import javax.swing.JLabel;
+//import javax.swing.JPanel;
 //import logika.IHra;
 //import main.Main;
 //import utils.Observer;
@@ -24,23 +20,32 @@
 // *
 // * @author Lukáš
 // */
-//public class PanelProstor extends AnchorPane implements Observer{
+//public class PanelProstor implements Observer{
 //    private IHra hra;
-//    private TextArea centerText;
+//    private JFrame frame;
+//    private JPanel panel;
+//    private JLabel label;
+//
 //    
-//    public PanelProstor(IHra hra){
+//    public PanelProstor(){
 //        this.hra = hra;
 //        hra.getHerniPlan().registerObserver(this);
-//        BorderPane borderPane = new BorderPane();
-//        centerText = new TextArea();
-//        centerText.setEditable(false);
-//        borderPane.setCenter(centerText);
 //        init();
 //    }
 //    
 //    private void init(){
-//        
+//        frame = new JFrame("prostory");
+//        frame.setVisible(true);
+//        frame.setSize(300, 150);
 //        update();
+//        
+//        panel = new JPanel();
+//        
+//        label = new JLabel("ahoj");
+//        
+//        panel.add(label);
+//        
+//        frame.add(panel);
 //    }
 //    
 //    @Override
@@ -57,7 +62,7 @@
 //        
 //    }
 //
-//    @Override
+//   // @Override
 //    public void aktualniProstor() {
 //        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
 //    }

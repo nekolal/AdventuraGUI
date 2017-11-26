@@ -7,6 +7,8 @@ package main;
 
 import UI.Mapa;
 import UI.MenuPole;
+import UI.Panel;
+//import UI.PanelProstor;
 import javafx.application.Application;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -23,29 +25,41 @@ import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
+import logika.HerniPlan;
 import logika.Hra;
 import logika.IHra;
 import uiText.TextoveRozhrani;
+//import views.Panel;
 
 /**
  *
  * @author nekl00
  */
 public class Main extends Application {
-    
+    private Panel panel;
     private Mapa mapa;
     private MenuPole menu;
     private IHra hra;
     private TextArea centerText;
     private Stage primaryStage;
+//    private HerniPlan hPlan;
+
+
     
     @Override
     public void start(Stage primaryStage) {
         
         this.primaryStage = primaryStage;
+//        hPlan = new HerniPlan();
+        
         hra = new Hra();
+        panel = new Panel(hra);
         mapa = new Mapa(hra);
         menu = new MenuPole(this);
+  //      panel = new Panel();
+
+        
+        
         
         BorderPane borderPane = new BorderPane();
         
@@ -57,6 +71,7 @@ public class Main extends Application {
         
         Label zadejPrikazLabel = new Label("Zadej prikaz");
         zadejPrikazLabel.setFont(Font.font("Arial", FontWeight.BOLD, 16));
+//        Label panelL = new Label(hPlan.getAktualniProstor().getNazev());
         
         TextField zadejPrikazTextField = new TextField("Sem zadej prikaz");
         
@@ -85,8 +100,10 @@ public class Main extends Application {
         dolniPanel.setAlignment(Pos.CENTER);
         dolniPanel.getChildren().addAll(zadejPrikazLabel, zadejPrikazTextField);
         
-        //obrazek s mapou
+        //panel
         
+//        FlowPane panel = new FlowPane();
+//        panel.getChildren().addAll(panelL);
         
         //panel prikaz
         borderPane.setBottom(dolniPanel);
@@ -94,10 +111,12 @@ public class Main extends Application {
         borderPane.setLeft(mapa);
         //menu adventury
         borderPane.setTop(menu);
-        
+        //panel
+        borderPane.setRight(panel);
+
 
         
-        Scene scene = new Scene(borderPane, 700, 400);
+        Scene scene = new Scene(borderPane, 800, 400);
         
         primaryStage.setTitle("Moje adventura");
         primaryStage.setScene(scene);
@@ -108,6 +127,12 @@ public class Main extends Application {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
+//        java.awt.EventQueue.invokeLater(new Runnable(){
+//            public void run(){
+//                new Panel().setVisible(true);
+//            }
+//        });
+        
         if (args.length == 0) {
             launch(args);
         }
