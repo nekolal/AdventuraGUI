@@ -1,8 +1,10 @@
 /* Soubor je ulozen v kodovani UTF-8.
  * Kontrola kódování: Příliš žluťoučký kůň úpěl ďábelské ódy. */
 package logika;
+import java.util.ArrayList;
 import java.util.Map;
 import java.util.HashMap;
+import java.util.List;
 
 
 
@@ -23,6 +25,7 @@ public class Batoh
 {
     private static final int KAPACITA = 5; //Možnost nést maximálně 5 věcí
     private Map<String, Vec> veci; //klíč - hodnota
+    private HerniPlan herniPlan;
   
     //== KONSTANTNÍ ATRIBUTY TŘÍDY =============================================
     //== PROMĚNNÉ ATRIBUTY TŘÍDY ===============================================
@@ -42,10 +45,10 @@ public class Batoh
      * 
      */
 
-    public Batoh()
+    public Batoh(HerniPlan herniPlan)
     {
        veci = new HashMap<>();
-
+       this.herniPlan = herniPlan;
     }
 
     /**
@@ -80,6 +83,7 @@ public class Batoh
     public void pridej(Vec vec)
     {  
         veci.put(vec.getNazev(),vec);
+        //herniPlan.notifyAllObservers();
     }
     
     /**
@@ -130,6 +134,14 @@ public class Batoh
             return true;
         }
         return false;
+    }
+    
+    public List<Vec> getListVeci() {
+        List<Vec> listVeci = new ArrayList<>();
+        for (Map.Entry<String, Vec> entry : veci.entrySet()) {
+            listVeci.add(entry.getValue());
+        }
+        return listVeci;
     }
 
 

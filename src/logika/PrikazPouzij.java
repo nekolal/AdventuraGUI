@@ -91,16 +91,20 @@ public class PrikazPouzij implements IPrikaz
             if((vec1.getNazev().equals("kapesní_nůž") && vec2.getNazev().equals("lijány")))
             {
                 Vec nařezanéLijány = new Vec("nařezané_lijány", "nařezané lijány důležité pro stavbu plavidla", true);
+                nařezanéLijány.setZdroj("/zdroje/lijany.png");
                 herniPlan.getAktualniProstor().vlozVec(nařezanéLijány);
                 herniPlan.getBatoh().pridej(vec1);
+                herniPlan.notifyAllObservers();
                 return "Nařezal jsi lijány na potřebnou délku" + 
                     "\n nově vytvořenou věc najdeš v prostoru, kde se nacházíš pod názvem: " + nařezanéLijány.getNazev();
             }
             else if((vec1.getNazev().equals("lijány") && vec2.getNazev().equals("kapesní_nůž")))
             {
                 Vec nařezanéLijány = new Vec("nařezané_lijány", "nařezané lijány důležité pro stavbu plavidla", true);
+                nařezanéLijány.setZdroj("/zdroje/lijany.png");
                 herniPlan.getAktualniProstor().vlozVec(nařezanéLijány);
                 herniPlan.getBatoh().pridej(vec2);
+                herniPlan.notifyAllObservers();
                 return "Nařezal jsi lijány na potřebnou délku" + 
                     "\n nově vytvořenou věc najdeš v prostoru, kde se nacházíš pod názvem: " + nařezanéLijány.getNazev();
             }
@@ -108,33 +112,30 @@ public class PrikazPouzij implements IPrikaz
             if((vec1.getNazev().equals("klády") && vec2.getNazev().equals("nařezané_lijány"))||(vec1.getNazev().equals("nařezané_lijány") && vec2.getNazev().equals("klády")))
             {
                 Vec vor = new Vec("vor", "tohle sis postavil a to je tvá jediná záchrana", true);
+                vor.setZdroj("/zdroje/vor.jpg");
                 herniPlan.getAktualniProstor().vlozVec(vor);
+                herniPlan.notifyAllObservers();
                 return "Kombinuji\n Vytvořil jsi vor, pomocí kterého se můžeš dostat pryč z tohoto ostrova" + 
                     "\n nově vytvořenou věc najdeš v prostoru, kde se nacházíš pod názvem: " + vor.getNazev();
             }
            
-            /*
-            if((vec1.getNazev().equals("kokosový_ořech") && vec2.getNazev().equals("ostrý_kámen"))||(vec1.getNazev().equals("ostrý_kámen") && vec2.getNazev().equals("kokosový_ořech")))
-            {
-                Vec rozpůlenýKokosovýOřech = new Vec("rozpůlený_kokosový_ořech", "Rozpůlený kokosový ořech, dobré na uchování vody", true);
-                herniPlan.getAktualniProstor().vlozVec(rozpůlenýKokosovýOřech);
-                return "Kombinuji\n Vytvořil jsi nádobu na vodu z kokosového ořechu.";
-            }
-            */
-            
             if((vec1.getNazev().equals("kokosový_ořech") && vec2.getNazev().equals("ostrý_kámen")))
             {
                 Vec rozpůlenýKokosovýOřech = new Vec("rozpůlený_kokosový_ořech", "Rozpůlený kokosový ořech, dobré na uchování vody", true);
+                rozpůlenýKokosovýOřech.setZdroj("/zdroje/rozpulenykokos.png");
                 herniPlan.getAktualniProstor().vlozVec(rozpůlenýKokosovýOřech);
                 herniPlan.getBatoh().pridej(vec2);
+                herniPlan.notifyAllObservers();
                 return "Kombinuji\n Vytvořil jsi nádobu na vodu z kokosového ořechu." +
                     "\n nově vytvořenou věc najdeš v prostoru, kde se nacházíš pod názvem: " + rozpůlenýKokosovýOřech.getNazev();
             }
             else if((vec1.getNazev().equals("ostrý_kámen") && vec2.getNazev().equals("kokosový_ořech")))
             {
                 Vec rozpůlenýKokosovýOřech = new Vec("rozpůlený_kokosový_ořech", "Rozpůlený kokosový ořech, dobré na uchování vody", true);
+                rozpůlenýKokosovýOřech.setZdroj("/zdroje/rozpulenykokos.png");
                 herniPlan.getAktualniProstor().vlozVec(rozpůlenýKokosovýOřech);
                 herniPlan.getBatoh().pridej(vec1);
+                herniPlan.notifyAllObservers();
                 return "Kombinuji\n Vytvořil jsi nádobu na vodu z kokosového ořechu." +
                     "\n nově vytvořenou věc najdeš v prostoru, kde se nacházíš pod názvem: " + rozpůlenýKokosovýOřech.getNazev();
             }

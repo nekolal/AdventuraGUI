@@ -213,6 +213,20 @@ public class Prostor {
     }
     
     /**
+     * Vrací textový řetězec, který popisuje sousední východy)například:
+     * "vychody: hala ".
+     *
+     *@return    Seznam názvů sousedních prostorů
+     */
+    public String seznamVychodu() {
+        String vracenyText = "vychody:";
+        for (Prostor sousedni : vychody) {
+             vracenyText += " " + sousedni.getNazev();
+        }
+        return vracenyText;
+    }
+    
+    /**
      * Slouží pro vložení věci do prostoru
      * 
      * @param vec - věc

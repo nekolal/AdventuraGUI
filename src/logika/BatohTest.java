@@ -43,7 +43,7 @@ public class BatohTest
     public void setUp()
     {
     }
-
+    private HerniPlan herniPlan;
 
     /***************************************************************************
      * Úklid po testu - tato metoda se spustí po vykonání každého testu.
@@ -73,7 +73,7 @@ public class BatohTest
     @Test
     public void testMetodyPridej()
     {
-        Batoh batoh1 = new Batoh();
+        Batoh batoh1 = new Batoh(herniPlan);
         Vec vec1 = new Vec("a", "aaa", true);
         Vec vec2 = new Vec("b", "bbb", true);
         batoh1.pridej(vec1);
@@ -87,7 +87,7 @@ public class BatohTest
     @Test
     public void testMetodyOdeber()
     {
-        Batoh batoh1 = new Batoh();
+        Batoh batoh1 = new Batoh(herniPlan);
         Vec vec1 = new Vec("a", "aaa", false);
         Vec vec2 = new Vec("b", "bbb", false);
         assertEquals(null, batoh1.odeber("b"));
@@ -100,7 +100,7 @@ public class BatohTest
     @Test
     public void testMetodyBagIsFull()
     {
-        Batoh batoh1 = new Batoh();
+        Batoh batoh1 = new Batoh(herniPlan);
         Vec vec1 = new Vec("a", "aaa", false);
         Vec vec2 = new Vec("b", "bbb", false);
         Vec vec3 = new Vec("c", "ccc", false);
@@ -123,7 +123,7 @@ public class BatohTest
     @Test
     public void testMetodyIsInBag()
     {
-        Batoh batoh1 = new Batoh();
+        Batoh batoh1 = new Batoh(herniPlan);
         Vec vec1 = new Vec("a", "aaa", false);
         Vec vec2 = new Vec("b", "bbb", false);
         Vec vec3 = new Vec("c", "ccc", false);

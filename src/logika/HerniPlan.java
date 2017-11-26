@@ -21,10 +21,11 @@ public class HerniPlan implements Subject{
     private static final String CILOVY_PROSTOR = "moře";
     
     public boolean zemrelNaDehydrataci = false;
+    private HerniPlan herniPlan;
 
     private Prostor aktualniProstor;
-    Batoh batoh = new Batoh();
-    Prostor potok = new Prostor("potok", "Jediný zdroj pitné vody na tomto ostrově.", 10, 10); //potřeba při sbírání věci "voda", aby voda nebyla odebrána
+    Batoh batoh = new Batoh(herniPlan);
+    Prostor potok; //potřeba při sbírání věci "voda", aby voda nebyla odebrána
 
     private List<Observer> listObserveru = new ArrayList<Observer>();
     
@@ -41,13 +42,14 @@ public class HerniPlan implements Subject{
     private void zalozProstoryHry() {
         // vytvářejí se jednotlivé prostory
     
-        Prostor pláž = new Prostor("pláž", "místo, na kterém jsi se probudil, normální pláž", 20, 20);
-        Prostor les = new Prostor("les", "normální les, plný listnatých stromů", 20, 40);
+        Prostor pláž = new Prostor("pláž", "místo, na kterém jsi se probudil, normální pláž", 220, 355);
+        Prostor les = new Prostor("les", "normální les, plný listnatých stromů", 200, 310);
         Prostor prales = new Prostor("prales", "Je tu materiál, který se Ti může hodit\n" +
                                                 " a potrava ve formě ovoce. Číhá tu však nebezpečí\n" +
-                                                " a tak není od věci být na pozoru", 40, 40);
-        Prostor jeskyně = new Prostor("jeskyně", "holá jeskyně, je tu zima a tma", 40, 60);
-        Prostor moře = new Prostor ("moře", "Spojnice mezi Tebou a Tvým domovem, máš štěstí, že tu nenarazíš na žraloka", 60, 40);
+                                                " a tak není od věci být na pozoru", 220, 250);
+        Prostor jeskyně = new Prostor("jeskyně", "holá jeskyně, je tu zima a tma", 195, 330);
+        Prostor moře = new Prostor ("moře", "Spojnice mezi Tebou a Tvým domovem, máš štěstí, že tu nenarazíš na žraloka", 220, 380);
+        potok = new Prostor("potok", "Jediný zdroj pitné vody na tomto ostrově.", 220, 220);
 
         // přiřazují se průchody mezi prostory (sousedící prostory)
        
@@ -67,15 +69,25 @@ public class HerniPlan implements Subject{
         
         // vytvoříme několik věcí
         Vec kapesníNůž = new Vec("kapesní_nůž", "tohle je jediné co Ti zbylo z lodě, může se Ti hodit", true);
+        kapesníNůž.setZdroj("/zdroje/nuz.png");
         Vec klády = new Vec("klády", "klády z vysušených spadlých stromů", true);
+        klády.setZdroj("/zdroje/klady.jpg");
         Vec lijány = new Vec("lijány", "lijány, vysí tu ze stromů", true);
+        lijány.setZdroj("/zdroje/lijany.png");
         Vec stromy = new Vec("stromy", "obyčejné stromy", false);
+        stromy.setZdroj("/zdroje/stromy.png");
         Vec ostrýKámen = new Vec("ostrý_kámen", "velmi ostrý kámen, může se hodit jako zbraň", true);
+        ostrýKámen.setZdroj("/zdroje/kamen.png");
         Vec kokosovýOřech = new Vec("kokosový_ořech", "Obyčejný kokosový ořech, s trochou snahy ho upravíš a budeš si v něm moct vzít vodu s sebou", true);
+        kokosovýOřech.setZdroj("/zdroje/kokosovyorech.png");
         Vec voda = new Vec("voda", "pitná voda, vem si ji s sebou do kokosu, bude se ti hodit na cestu", true);
+        voda.setZdroj("/zdroje/voda.png");
         Vec písek = new Vec("písek", "co jiného by se také dalo očekávat na pláži.", false);
+        písek.setZdroj("/zdroje/pisek.jpg");
         Vec křoví = new Vec("křoví", "křoví rostoucí všemoženě, kde je volné místo", false);
+        křoví.setZdroj("/zdroje/krovi.png");
         Vec balvany = new Vec("balvany", "obrovské balvany", false);
+        balvany.setZdroj("/zdroje/balvany.png");
 
         //vytvoříme potraviny
         Potrava banány = new Potrava("banány", "chutné zralé banány, ideální svačinka");

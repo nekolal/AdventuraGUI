@@ -58,6 +58,7 @@ public class PrikazZahod implements IPrikaz
             Vec vec = herniPlan.getBatoh().odeber(nazevVeci);
             herniPlan.getBatoh().odeber("voda");
             herniPlan.getAktualniProstor().vlozVec(vec);
+            herniPlan.notifyAllObservers();
             return "věc " + nazevVeci + " byla zahozena";
         }
         
@@ -73,6 +74,7 @@ public class PrikazZahod implements IPrikaz
             //herniPlan.getBatoh().odeber(nazevVeci);
             Vec vec = herniPlan.getBatoh().odeber(nazevVeci);
             herniPlan.getAktualniProstor().vlozVec(vec);
+            herniPlan.notifyAllObservers();
             return "věc " + nazevVeci + " byla zahozena";
             
            

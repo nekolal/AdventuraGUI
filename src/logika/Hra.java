@@ -25,7 +25,7 @@ public class Hra implements IHra {
      */
     public Hra() {
         herniPlan = new HerniPlan();
-        batoh = new Batoh();
+        batoh = new Batoh(herniPlan);
         platnePrikazy = new SeznamPrikazu();
         platnePrikazy.vlozPrikaz(new PrikazNapoveda(platnePrikazy));
         platnePrikazy.vlozPrikaz(new PrikazJdi(herniPlan));

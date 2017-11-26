@@ -18,6 +18,7 @@ public class Vec
     private String nazev;
     private String popis;
     private boolean prenositelna;
+    private String zdroj;
     
     //== Konstruktory a tovární metody =============================================
 
@@ -62,6 +63,14 @@ public class Vec
      */
     public boolean isPrenositelna() {
         return prenositelna;
+    }
+    
+    public String getZdroj(){
+        return zdroj;
+    }
+    
+    public void setZdroj(String zdroj){
+        this.zdroj = zdroj;
     }
 
     

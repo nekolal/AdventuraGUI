@@ -7,7 +7,8 @@ package main;
 
 import UI.Mapa;
 import UI.MenuPole;
-import UI.Panel;
+import UI.PanelBatoh;
+import UI.PanelVychodu;
 //import UI.PanelProstor;
 import javafx.application.Application;
 import javafx.event.ActionEvent;
@@ -15,12 +16,14 @@ import javafx.event.EventHandler;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
+import javafx.scene.control.ListView;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.FlowPane;
+import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
@@ -36,12 +39,14 @@ import uiText.TextoveRozhrani;
  * @author nekl00
  */
 public class Main extends Application {
-    private Panel panel;
     private Mapa mapa;
     private MenuPole menu;
     private IHra hra;
     private TextArea centerText;
     private Stage primaryStage;
+    private PanelVychodu panelVychodu;
+    private PanelBatoh panelBatoh;
+    private ListView<String> listVychodu;
 //    private HerniPlan hPlan;
 
 
@@ -53,13 +58,13 @@ public class Main extends Application {
 //        hPlan = new HerniPlan();
         
         hra = new Hra();
-        panel = new Panel(hra);
         mapa = new Mapa(hra);
         menu = new MenuPole(this);
   //      panel = new Panel();
 
         
-        
+        panelVychodu = new PanelVychodu(hra.getHerniPlan());
+        listVychodu = panelVychodu.getList();
         
         BorderPane borderPane = new BorderPane();
         
@@ -95,6 +100,7 @@ public class Main extends Application {
             }
         });
         
+        
                        
         FlowPane dolniPanel = new FlowPane();
         dolniPanel.setAlignment(Pos.CENTER);
@@ -112,11 +118,16 @@ public class Main extends Application {
         //menu adventury
         borderPane.setTop(menu);
         //panel
-        borderPane.setRight(panel);
+        borderPane.setRight(listVychodu);
 
-
+        panelBatoh = new PanelBatoh(hra.getHerniPlan());
         
-        Scene scene = new Scene(borderPane, 800, 400);
+        VBox vBox = new VBox();
+        vBox.getChildren().addAll(dolniPanel, panelBatoh.getHBox());
+        borderPane.setBottom(vBox);
+        
+        
+        Scene scene = new Scene(borderPane, 800, 700);
         
         primaryStage.setTitle("Moje adventura");
         primaryStage.setScene(scene);

@@ -75,7 +75,9 @@ public class PrikazVezmi implements IPrikaz
         
        
         herniPlan.getBatoh().pridej(vec);
+        herniPlan.notifyAllObservers();
         return "věc " + nazevVeci + " byla přidána do batohu";
+        
     }
 
     /**
