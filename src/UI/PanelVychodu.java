@@ -54,7 +54,6 @@ public class PanelVychodu implements Observer{
         this.update();
     }
 
-    
     @Override
     public void update() {
         String vychody = plan.getAktualniProstor().seznamVychodu();
@@ -65,12 +64,10 @@ public class PanelVychodu implements Observer{
         }
     }
 
-  
     public void novaHra(HerniPlan plan) {
         plan.deleteObserver(this);
         this.plan = plan;
         plan.registerObserver(this);
         this.update();
     }
-
 }

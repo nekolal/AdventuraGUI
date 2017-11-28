@@ -125,7 +125,7 @@ public class Main extends Application {
         //panel prikaz
         borderPane.setBottom(dolniPanel);
         //obrazek s mapou
-        leftPane.setRight(mapa);
+        leftPane.setCenter(mapa);
         //menu adventury
         borderPane.setTop(menu);
         //panel
@@ -147,7 +147,7 @@ public class Main extends Application {
         
         borderPane.setLeft(leftPane);
 
-        Scene scene = new Scene(borderPane, 800, 700);
+        Scene scene = new Scene(borderPane, 1150, 700);
 
         primaryStage.setTitle("Moje adventura");
         primaryStage.setScene(scene);
