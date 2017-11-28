@@ -43,7 +43,7 @@ public class Mapa extends AnchorPane implements Observer{
         this.setLeftAnchor(tecka, hra.getHerniPlan().getAktualniProstor().getPosX());
     }
     
-//    @Override
+    
     public void novaHra(IHra hra) {
         hra.getHerniPlan().deleteObserver(this);
         this.hra = hra;

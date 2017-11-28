@@ -136,12 +136,8 @@ public class Batoh
         return false;
     }
     
-    public List<Vec> getListVeci() {
-        List<Vec> listVeci = new ArrayList<>();
-        for (Map.Entry<String, Vec> entry : veci.entrySet()) {
-            listVeci.add(entry.getValue());
-        }
-        return listVeci;
+    public Map<String, Vec>  getVeci() {
+        return veci;
     }
 
 

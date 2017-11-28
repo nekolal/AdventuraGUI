@@ -3,11 +3,15 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/Lukáš/Documents/git/src/UI/Panel.java</file>
-            <file>file:/C:/Users/Lukáš/Documents/git/src/logika/IHra.java</file>
+            <file>file:/C:/Users/Lukáš/Documents/git/src/UI/PanelBatoh.java</file>
+            <file>file:/C:/Users/Lukáš/Documents/git/src/logika/Prostor.java</file>
             <file>file:/C:/Users/Lukáš/Documents/git/src/UI/Mapa.java</file>
-            <file>file:/C:/Users/Lukáš/Documents/git/src/UI/Pane.java</file>
-            <file>file:/C:/Users/Lukáš/Documents/git/src/views/Panel.java</file>
+            <file>file:/C:/Users/Lukáš/Documents/git/src/logika/HerniPlan.java</file>
+            <file>file:/C:/Users/Lukáš/Documents/git/src/logika/Vec.java</file>
+            <file>file:/C:/Users/Lukáš/Documents/git/src/UI/PanelVychodu.java</file>
+            <file>file:/C:/Users/Lukáš/Documents/git/src/logika/Batoh.java</file>
+            <file>file:/C:/Users/Lukáš/Documents/git/src/utils/Observer.java</file>
+            <file>file:/C:/Users/Lukáš/Documents/git/src/logika/Hra.java</file>
             <file>file:/C:/Users/Lukáš/Documents/git/src/main/Main.java</file>
         </group>
     </open-files>

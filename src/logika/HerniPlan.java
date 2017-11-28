@@ -20,8 +20,10 @@ public class HerniPlan implements Subject{
 
     private static final String CILOVY_PROSTOR = "moře";
     
+    
     public boolean zemrelNaDehydrataci = false;
     private HerniPlan herniPlan;
+    private Hra hra;
 
     private Prostor aktualniProstor;
     Batoh batoh = new Batoh(herniPlan);
@@ -32,8 +34,14 @@ public class HerniPlan implements Subject{
     /**
      *  Konstruktor který vytváří jednotlivé prostory a propojuje je pomocí východů.
      */
-    public HerniPlan() {
+    public HerniPlan(Hra hra) {
         zalozProstoryHry();
+        
+        
+        
+    
+        this.hra = hra;
+        //listObserveru = new ArrayList<>();
     }
     /**
      *  Vytváří jednotlivé prostory a propojuje je pomocí východů.
@@ -195,6 +203,10 @@ public class HerniPlan implements Subject{
     public Batoh getBatoh()
     {
         return batoh;
+    }
+    
+    public Hra getHra() {
+        return hra;
     }
 
     @Override

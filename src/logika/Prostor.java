@@ -1,5 +1,6 @@
 package logika;
 
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.Set;
@@ -245,6 +246,10 @@ public class Prostor {
         return veci.remove(nazev);
     }
     
+    public Map<String, Vec> getVeci(){
+        return veci;
+    }
+    
     /**
      * Slouží pro vložení potraviny do prostoru
      * 
@@ -277,4 +282,29 @@ public class Prostor {
     public double getPosY() {
         return posY;
     }
+    
+//    public Map<String, Vec> getMapVeci() {
+//        //List<Vec> listVeci = new ArrayList<>();
+//
+//        Map<String, Vec> mapVeci = new HashMap<>();
+//        for (Map.Entry<String, Vec> entry : veci.entrySet()) {
+//            mapVeci.put(Vec, entry.getValue());
+//           
+//            //veci.put(vec.getNazev(), vec);
+//        }
+//        
+//        potraviny.put(potrava.getNazev(), potrava);
+//        
+//        return mapVeci;
+//    }
+//    
+//    
+//    
+//    public List<Vec> getListVeci() {
+//        List<Vec> listVeci = new ArrayList<>();
+//        for (Map.Entry<String, Vec> entry : veci.entrySet()) {
+//            listVeci.add(entry.getValue());
+//        }
+//        return listVeci;
+//    }
 }
