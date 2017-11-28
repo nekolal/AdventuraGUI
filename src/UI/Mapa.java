@@ -13,7 +13,6 @@ import javafx.scene.shape.Circle;
 import logika.IHra;
 import main.Main;
 import utils.Observer;
-import utils.ObserverNovaHra;
 
 /**
  *
@@ -42,13 +41,11 @@ public class Mapa extends AnchorPane implements Observer{
         this.setTopAnchor(tecka, hra.getHerniPlan().getAktualniProstor().getPosY());
         this.setLeftAnchor(tecka, hra.getHerniPlan().getAktualniProstor().getPosX());
     }
-    
-    
+
     public void novaHra(IHra hra) {
         hra.getHerniPlan().deleteObserver(this);
         this.hra = hra;
         hra.getHerniPlan().registerObserver(this);
         update();
-        
     }
 }

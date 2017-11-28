@@ -15,8 +15,6 @@ import javafx.scene.control.MenuItem;
 import javafx.scene.input.KeyCombination;
 import javafx.scene.web.WebView;
 import javafx.stage.Stage;
-import logika.Hra;
-import logika.IHra;
 import main.Main;
 
 /**
@@ -35,21 +33,16 @@ public class MenuPole extends MenuBar{
     private void init(){
         Menu menuSoubor = new Menu("Adentura");
 
-        
         MenuItem itemNovaHra = new MenuItem("Nová hra");
-//        MenuItem itemNovaHra = new MenuItem(new Image("Nová hra", new ImageView(Main.getClass.getresourcesAsStream("cesta"))));
         itemNovaHra.setAccelerator(KeyCombination.keyCombination("Ctrl+N"));
-        
         MenuItem itemKonec = new MenuItem("Konec");
         
         Menu menuHelp = new Menu("Help");
         MenuItem itemOProgramu = new MenuItem("O programu");
         MenuItem itemNapoveda = new MenuItem("Napoveda");
         
-        
         menuSoubor.getItems().addAll(itemNovaHra, itemKonec);
         menuHelp.getItems().addAll(itemOProgramu, itemNapoveda);
-        
         
         this.getMenus().addAll(menuSoubor, menuHelp);
         
@@ -97,6 +90,5 @@ public class MenuPole extends MenuBar{
                 main.novaHra();
             }
         });
-
     }
 }

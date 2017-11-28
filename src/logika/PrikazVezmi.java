@@ -3,6 +3,8 @@
 package logika;
 
 import java.*;
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
 
 /*******************************************************************************
  * Třída PrikazVezmi implementuje pro hru příkaz vezmi
@@ -76,6 +78,9 @@ public class PrikazVezmi implements IPrikaz
        
         herniPlan.getBatoh().pridej(vec);
         herniPlan.notifyAllObservers();
+        Media pick = new Media(this.getClass().getResource("/zdroje/pick.mp3").toString());
+        MediaPlayer player = new MediaPlayer(pick);
+        player.play();
         return "věc " + nazevVeci + " byla přidána do batohu";
         
     }

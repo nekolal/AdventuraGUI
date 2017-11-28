@@ -9,8 +9,6 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.scene.control.ListView;
 import logika.HerniPlan;
-import logika.IHra;
-import main.Main;
 import utils.Observer;
 
 /**
@@ -21,9 +19,7 @@ public class PanelVychodu implements Observer{
     private HerniPlan plan;
     ListView<String> list;
     ObservableList<String> data;
-    private Main main;
-    private IHra hra;
-
+    
     public PanelVychodu(HerniPlan plan) {
         this.plan = plan;
         plan.registerObserver(this);

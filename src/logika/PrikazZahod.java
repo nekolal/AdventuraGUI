@@ -2,6 +2,9 @@
  * Kontrola kódování: Příliš žluťoučký kůň úpěl ďábelské ódy. */
 package logika;
 
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
+
 
 
 
@@ -48,6 +51,9 @@ public class PrikazZahod implements IPrikaz
      */
     public String proved(String... parametry)
     {
+        Media drop = new Media(this.getClass().getResource("/zdroje/drop.mp3").toString());
+        MediaPlayer player = new MediaPlayer(drop);
+            
         if(parametry.length < 1)
         {
             return "nevím, co chceš zahodit";
@@ -59,13 +65,17 @@ public class PrikazZahod implements IPrikaz
             herniPlan.getBatoh().odeber("voda");
             herniPlan.getAktualniProstor().vlozVec(vec);
             herniPlan.notifyAllObservers();
+            
+            player.play();
             return "věc " + nazevVeci + " byla zahozena";
         }
         
         if(nazevVeci.equals("voda"))
         {
             herniPlan.getBatoh().odeber(nazevVeci);
-            //herniPlan.getAktualniProstor().vlozVec(vec);
+            Media splash = new Media(this.getClass().getResource("/zdroje/splash.mp3").toString());
+            MediaPlayer playerSplash = new MediaPlayer(splash);
+            playerSplash.play();
             return "věc " + nazevVeci + " byla zahozena. Vsákla se, takže už jí tu nenajdeš.";
         }
         
@@ -75,6 +85,8 @@ public class PrikazZahod implements IPrikaz
             Vec vec = herniPlan.getBatoh().odeber(nazevVeci);
             herniPlan.getAktualniProstor().vlozVec(vec);
             herniPlan.notifyAllObservers();
+
+            player.play();
             return "věc " + nazevVeci + " byla zahozena";
             
            

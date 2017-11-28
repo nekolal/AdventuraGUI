@@ -29,17 +29,14 @@ public class HerniPlan implements Subject{
     Batoh batoh = new Batoh(herniPlan);
     Prostor potok; //potřeba při sbírání věci "voda", aby voda nebyla odebrána
 
-    private List<Observer> listObserveru = new ArrayList<Observer>();
+    List<Observer> listObserveru = new ArrayList<Observer>();
     
     /**
      *  Konstruktor který vytváří jednotlivé prostory a propojuje je pomocí východů.
      */
     public HerniPlan(Hra hra) {
         zalozProstoryHry();
-        
-        
-        
-    
+
         this.hra = hra;
         //listObserveru = new ArrayList<>();
     }
@@ -168,6 +165,7 @@ public class HerniPlan implements Subject{
     public boolean hracVyhral() {        
         if (aktualniProstor.getNazev().equals(CILOVY_PROSTOR) && getBatoh().isInBag("vor") && getBatoh().isInBag("voda")) 
         {
+            herniPlan.notifyAllObservers();
             return true;
         }
         
@@ -184,11 +182,13 @@ public class HerniPlan implements Subject{
     {
         if (aktualniProstor.getNazev().equals("prales") && !getBatoh().isInBag("ostrý_kámen"))
         {
+            herniPlan.notifyAllObservers();
             return true;
         }
         
         if (aktualniProstor.getNazev().equals(CILOVY_PROSTOR) && getBatoh().isInBag("vor")) 
         {
+            herniPlan.notifyAllObservers();
             zemrelNaDehydrataci = true;
             return true;
         }

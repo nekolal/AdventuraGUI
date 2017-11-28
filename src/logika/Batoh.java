@@ -1,11 +1,8 @@
 /* Soubor je ulozen v kodovani UTF-8.
  * Kontrola kódování: Příliš žluťoučký kůň úpěl ďábelské ódy. */
 package logika;
-import java.util.ArrayList;
 import java.util.Map;
 import java.util.HashMap;
-import java.util.List;
-
 
 
 /*******************************************************************************
@@ -83,7 +80,6 @@ public class Batoh
     public void pridej(Vec vec)
     {  
         veci.put(vec.getNazev(),vec);
-        //herniPlan.notifyAllObservers();
     }
     
     /**

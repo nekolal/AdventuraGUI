@@ -1,5 +1,7 @@
 package logika;
 
+import utils.Observer;
+
 
 /**
  * Třída Hra - třída představující logiku adventury.
@@ -73,6 +75,7 @@ public class Hra implements IHra {
      * Vrací true, pokud hra skončila.
      */
      public boolean konecHry() {
+         
         return konecHry;
     }
 
@@ -97,11 +100,15 @@ public class Hra implements IHra {
             textKVypsani = prikaz.proved(parametry);
 
             if (herniPlan.hracVyhral()) {
+                getHerniPlan().notifyAllObservers();
                 konecHry = true;
+                
             }
             if (herniPlan.hracProhral())
             {
+                getHerniPlan().notifyAllObservers();
                 konecHry = true;
+                
             }
         }
         else {
@@ -129,6 +136,5 @@ public class Hra implements IHra {
      */
      public HerniPlan getHerniPlan(){
         return herniPlan;
-     }
-    
+     }    
 }
