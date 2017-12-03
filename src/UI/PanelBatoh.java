@@ -16,6 +16,8 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.FlowPane;
 import logika.HerniPlan;
+import logika.Hra;
+import logika.IHra;
 import logika.Vec;
 import utils.Observer;
 
@@ -26,8 +28,10 @@ import utils.Observer;
 public class PanelBatoh implements Observer{
 
     private HerniPlan plan;
+    private IHra hra;
 //    private List<ImageView> imageView;
     private FlowPane flowPane;
+   
     
     //nové
     private ListView<Object> list;
@@ -37,6 +41,7 @@ public class PanelBatoh implements Observer{
 
     public PanelBatoh(HerniPlan plan, TextArea text) {
         this.plan = plan;
+        hra = new Hra();
         flowPane = new FlowPane();
         plan.registerObserver(this);
         centerText = text;
@@ -59,9 +64,17 @@ public class PanelBatoh implements Observer{
         list.setItems(data);
         list.setPrefWidth(120);
         
+        if (!hra.konecHry()) {
+            
+            Boolean b = hra.konecHry();
+            
+            
+
         list.setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent click) {
+                
+                centerText.setText(String.valueOf(b));
                 int selected = list.getSelectionModel().getSelectedIndex();
                 
                 Map<String, Vec> veci;
@@ -69,10 +82,8 @@ public class PanelBatoh implements Observer{
                 
                 String nazev = "";
                 int pomocna = 0;
-                for (String x : veci.keySet()) 
-                {
-                   if(pomocna == selected)
-                   {
+                for (String x : veci.keySet()) {
+                   if(pomocna == selected) {
                        nazev = x;
                    }
                    pomocna++;
@@ -86,9 +97,13 @@ public class PanelBatoh implements Observer{
 
                 plan.notifyAllObservers();
             }
-        });
+        });}
+        
+        
+        
     update();
     }
+        
 
     @Override 
     public void update() {
@@ -96,11 +111,10 @@ public class PanelBatoh implements Observer{
         Map<String, Vec> veci;
         veci = plan.getBatoh().getVeci();
         data.clear();
-        for (String x : veci.keySet()) 
-        {
-        Vec pomocna = veci.get(x);
-        ImageView obrazek = new ImageView(new Image(main.Main.class.getResourceAsStream(pomocna.getZdroj()), 100, 100, false, false));
-        data.add(obrazek);
+        for (String x : veci.keySet()) {
+            Vec pomocna = veci.get(x);
+            ImageView obrazek = new ImageView(new Image(main.Main.class.getResourceAsStream(pomocna.getZdroj()), 100, 100, false, false));
+            data.add(obrazek);
         }
     }
 

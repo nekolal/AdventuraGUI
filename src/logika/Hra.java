@@ -56,14 +56,11 @@ public class Hra implements IHra {
      *  Vrátí závěrečnou zprávu pro hráče.
      */
     public String vratEpilog() {
-        if(herniPlan.hracVyhral())
-        {
+        if(herniPlan.hracVyhral()){
             return "Gratuluji, podařilo se Ti zachránit, po 2 dnech plavení se po moři Tě zachránila nákladní loď.\n Nyní jsi na cestě do Londýna\n \n Děkuji za hraní mé hry.";
         }
-        if(herniPlan.hracProhral())
-        {
-            if(herniPlan.zemrelNaDehydrataci)
-            {
+        if(herniPlan.hracProhral()){
+            if(herniPlan.zemrelNaDehydrataci){
                 return "Zemřel jsi na moři na dehydrataci";
             }
             return "Napadla Tě agresivní opice a nedokázal ses jí ubránit. Něměl jsi u sebe dostatečnou zbraň.";
@@ -74,6 +71,7 @@ public class Hra implements IHra {
     /** 
      * Vrací true, pokud hra skončila.
      */
+    @Override
      public boolean konecHry() {
          
         return konecHry;
@@ -102,13 +100,14 @@ public class Hra implements IHra {
             if (herniPlan.hracVyhral()) {
                 getHerniPlan().notifyAllObservers();
                 konecHry = true;
+                setKonecHry(true);
                 
             }
             if (herniPlan.hracProhral())
             {
                 getHerniPlan().notifyAllObservers();
                 konecHry = true;
-                
+                setKonecHry(true);
             }
         }
         else {

@@ -165,7 +165,8 @@ public class HerniPlan implements Subject{
     public boolean hracVyhral() {        
         if (aktualniProstor.getNazev().equals(CILOVY_PROSTOR) && getBatoh().isInBag("vor") && getBatoh().isInBag("voda")) 
         {
-            herniPlan.notifyAllObservers();
+            hra.setKonecHry(true);
+            notifyAllObservers();
             return true;
         }
         
@@ -180,15 +181,15 @@ public class HerniPlan implements Subject{
      */
     public boolean hracProhral()
     {
-        if (aktualniProstor.getNazev().equals("prales") && !getBatoh().isInBag("ostrý_kámen"))
-        {
-            herniPlan.notifyAllObservers();
+        if (aktualniProstor.getNazev().equals("prales") && !getBatoh().isInBag("ostrý_kámen")){
+            hra.setKonecHry(true);
+            notifyAllObservers();
             return true;
         }
         
-        if (aktualniProstor.getNazev().equals(CILOVY_PROSTOR) && getBatoh().isInBag("vor")) 
-        {
-            herniPlan.notifyAllObservers();
+        if (aktualniProstor.getNazev().equals(CILOVY_PROSTOR) && getBatoh().isInBag("vor")) {
+            hra.setKonecHry(true);
+            notifyAllObservers();
             zemrelNaDehydrataci = true;
             return true;
         }

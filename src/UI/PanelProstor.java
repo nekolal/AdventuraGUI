@@ -5,7 +5,6 @@
  */
 package UI;
 
-
 import java.util.Map;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -65,8 +64,7 @@ public class PanelProstor implements Observer{
         list.setOnMouseClicked(new EventHandler<MouseEvent>() 
         {
             @Override
-            public void handle(MouseEvent click)
-            {
+            public void handle(MouseEvent click){
                 int selected = list.getSelectionModel().getSelectedIndex();
 
                 Map<String, Vec> veci;
@@ -74,10 +72,8 @@ public class PanelProstor implements Observer{
 
                 String nazev = "";
                 int pomocna = 0;
-                for (String x : veci.keySet()) 
-                {
-                   if(pomocna == selected)
-                   {
+                for (String x : veci.keySet()){
+                   if(pomocna == selected){
                        nazev = x;
                    }
                    pomocna++;
@@ -85,7 +81,6 @@ public class PanelProstor implements Observer{
 
                 String prikaz = "vezmi "+nazev;
                 String text = plan.getHra().zpracujPrikaz(prikaz);
-
 
                 centerText.appendText("\n" + prikaz + "\n");
                 centerText.appendText("\n" + text + "\n");
@@ -102,11 +97,10 @@ public class PanelProstor implements Observer{
         Map<String, Vec> veci;
         veci = plan.getAktualniProstor().getVeci();
         data.clear();
-        for (String x : veci.keySet()) 
-        {
-        Vec pomocna = veci.get(x);
-        ImageView obrazek = new ImageView(new Image(main.Main.class.getResourceAsStream(pomocna.getZdroj()), 100, 100, false, false));
-        data.add(obrazek);
+        for (String x : veci.keySet()) {
+            Vec pomocna = veci.get(x);
+            ImageView obrazek = new ImageView(new Image(main.Main.class.getResourceAsStream(pomocna.getZdroj()), 100, 100, false, false));
+            data.add(obrazek);
         }
     }
     

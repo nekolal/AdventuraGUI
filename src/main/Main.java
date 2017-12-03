@@ -25,6 +25,7 @@ import javafx.scene.layout.FlowPane;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 import javafx.stage.Stage;
+import logika.HerniPlan;
 import logika.Hra;
 import logika.IHra;
 import uiText.TextoveRozhrani;
@@ -45,6 +46,8 @@ public class Main extends Application {
     private PanelBatoh panelBatoh;
     private PanelProstor panelProstor;
     private ListView<String> listVychodu;
+   
+    private HerniPlan herniPlan;
 
 
     @Override
@@ -85,7 +88,14 @@ public class Main extends Application {
                 zadejPrikazTextField.setText("");
                 if (hra.konecHry()) {
                     zadejPrikazTextField.setEditable(false);
+                    
+                    Boolean b = hra.konecHry();
+            centerText.setText(String.valueOf(b));
+            
+                    centerText.appendText(hra.vratEpilog());
+                    hra.getHerniPlan().notifyAllObservers();
                 }
+                
             }
         });
 
@@ -104,7 +114,9 @@ public class Main extends Application {
                 zadejPrikazTextField.setText("");
 
                 if (hra.konecHry()) {
-                    zadejPrikazTextField.setEditable(false);
+                    zadejPrikazTextField.setEditable(false);  
+                    centerText.appendText(hra.vratEpilog());
+                    hra.getHerniPlan().notifyAllObservers();
                 }
             }
         });

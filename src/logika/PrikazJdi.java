@@ -54,8 +54,8 @@ class PrikazJdi implements IPrikaz {
         else {
             player.play();
             plan.setAktualniProstor(sousedniProstor);
+            plan.notifyAllObservers();
             return sousedniProstor.dlouhyPopis();
-            
         }
     }
     
