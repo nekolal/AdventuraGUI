@@ -10,6 +10,7 @@ import UI.MenuPole;
 import UI.PanelBatoh;
 import UI.PanelProstor;
 import UI.PanelVychodu;
+import java.util.Map;
 import javafx.application.Application;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -28,6 +29,7 @@ import javafx.stage.Stage;
 import logika.HerniPlan;
 import logika.Hra;
 import logika.IHra;
+import logika.Vec;
 import uiText.TextoveRozhrani;
 
 /**
@@ -45,11 +47,12 @@ public class Main extends Application {
     private PanelVychodu panelVychodu;
     private PanelBatoh panelBatoh;
     private PanelProstor panelProstor;
+    
     private ListView<String> listVychodu;
+    
+    private ListView<Object> listBatoh;
+    private ListView<Object> listProstorVeci;
    
-    private HerniPlan herniPlan;
-
-
     @Override
     public void start(Stage primaryStage) {
 
@@ -88,16 +91,98 @@ public class Main extends Application {
                 zadejPrikazTextField.setText("");
                 if (hra.konecHry()) {
                     zadejPrikazTextField.setEditable(false);
-                    
-                    Boolean b = hra.konecHry();
-            centerText.setText(String.valueOf(b));
-            
+                                
                     centerText.appendText(hra.vratEpilog());
                     hra.getHerniPlan().notifyAllObservers();
                 }
                 
             }
         });
+        
+        
+        
+        
+        
+        
+        panelBatoh = new PanelBatoh(hra.getHerniPlan(), centerText);
+        listBatoh = panelBatoh.getList();
+ 
+        listBatoh.setOnMouseClicked(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent click) {
+                
+                
+                if (!hra.konecHry()) {
+                
+                int selected = listBatoh.getSelectionModel().getSelectedIndex();
+                
+                Map<String, Vec> veci;
+                veci = hra.getHerniPlan().getBatoh().getVeci(); 
+                
+                String nazev = "";
+                int pomocna = 0;
+                for (String x : veci.keySet()) {
+                   if(pomocna == selected) {
+                       nazev = x;
+                   }
+                   pomocna++;
+                }
+                String prikaz = "zahod " + nazev;
+                
+                String text = hra.zpracujPrikaz(prikaz);
+                
+                centerText.appendText("\n\n" + prikaz + "\n");
+                centerText.appendText("\n" + text + "\n");
+
+                hra.getHerniPlan().notifyAllObservers();
+            }
+            }
+        });
+        
+        
+        
+
+        
+        
+        
+        panelProstor = new PanelProstor(hra.getHerniPlan(), centerText);
+        listProstorVeci = panelProstor.getList();
+        
+        listProstorVeci.setOnMouseClicked(new EventHandler<MouseEvent>() 
+        {
+            @Override
+            public void handle(MouseEvent click){
+                
+                if (!hra.konecHry()) {
+                    
+                
+                int selected = listProstorVeci.getSelectionModel().getSelectedIndex();
+
+                Map<String, Vec> veci;
+                veci = hra.getHerniPlan().getAktualniProstor().getVeci();
+
+                String nazev = "";
+                int pomocna = 0;
+                for (String x : veci.keySet()){
+                   if(pomocna == selected){
+                       nazev = x;
+                   }
+                   pomocna++;
+                }
+
+                String prikaz = "vezmi "+nazev;
+                String text = hra.zpracujPrikaz(prikaz);
+
+                centerText.appendText("\n" + prikaz + "\n");
+                centerText.appendText("\n" + text + "\n");
+
+                hra.getHerniPlan().notifyAllObservers();
+                }
+            }
+        });
+        
+        
+        
 
         zadejPrikazTextField.requestFocus();
 
@@ -142,9 +227,6 @@ public class Main extends Application {
         borderPane.setTop(menu);
         //panel
         borderPane.setRight(listVychodu);
-        
-        panelBatoh = new PanelBatoh(hra.getHerniPlan(), centerText);
-        panelProstor = new PanelProstor(hra.getHerniPlan(),centerText);
         
         Label lBatoh = new Label("Batoh");
         lBatoh.setFont(Font.font("Arial", FontWeight.BOLD, 16)); 

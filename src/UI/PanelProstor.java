@@ -15,6 +15,7 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import logika.HerniPlan;
+import logika.Hra;
 import logika.IHra;
 import logika.Vec;
 import utils.Observer;
@@ -31,12 +32,14 @@ public class PanelProstor implements Observer{
  */
 
     private HerniPlan plan;
-    ListView<Object> list;
+    private ListView<Object> list;
     ObservableList<Object> data;
     private TextArea centerText;
+    private IHra hra;
 
     public PanelProstor(HerniPlan plan, TextArea text) {
         this.plan = plan;
+        hra = new Hra();
         plan.registerObserver(this);
         centerText = text;
 
@@ -49,7 +52,7 @@ public class PanelProstor implements Observer{
      * @param plan
      */
     public void nastaveniHernihoPlanu(HerniPlan plan) {
-        this.plan = plan;
+        //this.plan = plan;
         plan.registerObserver(this);
         this.update();
     }
@@ -61,33 +64,7 @@ public class PanelProstor implements Observer{
         list.setItems(data);
         list.setPrefWidth(120);
         
-        list.setOnMouseClicked(new EventHandler<MouseEvent>() 
-        {
-            @Override
-            public void handle(MouseEvent click){
-                int selected = list.getSelectionModel().getSelectedIndex();
-
-                Map<String, Vec> veci;
-                veci = plan.getAktualniProstor().getVeci();
-
-                String nazev = "";
-                int pomocna = 0;
-                for (String x : veci.keySet()){
-                   if(pomocna == selected){
-                       nazev = x;
-                   }
-                   pomocna++;
-                }
-
-                String prikaz = "vezmi "+nazev;
-                String text = plan.getHra().zpracujPrikaz(prikaz);
-
-                centerText.appendText("\n" + prikaz + "\n");
-                centerText.appendText("\n" + text + "\n");
-
-                plan.notifyAllObservers();
-            }
-        });
+        
         update();
     }
 

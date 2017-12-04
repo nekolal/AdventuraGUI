@@ -63,7 +63,7 @@ public class Hra implements IHra {
             if(herniPlan.zemrelNaDehydrataci){
                 return "Zemřel jsi na moři na dehydrataci";
             }
-            return "Napadla Tě agresivní opice a nedokázal ses jí ubránit. Něměl jsi u sebe dostatečnou zbraň.";
+            return "Napadla Tě agresivní opice a nedokázal ses jí ubránit. \nNěměl jsi u sebe dostatečnou zbraň.";
         }
         return "Doufám, že se brzy uvidíme.";
     }

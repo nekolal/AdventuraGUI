@@ -28,25 +28,24 @@ import utils.Observer;
 public class PanelBatoh implements Observer{
 
     private HerniPlan plan;
-    private IHra hra;
-//    private List<ImageView> imageView;
-    private FlowPane flowPane;
-   
     
-    //nové
     private ListView<Object> list;
     ObservableList<Object> data;
     private TextArea centerText;
+    
+
 
 
     public PanelBatoh(HerniPlan plan, TextArea text) {
         this.plan = plan;
-        hra = new Hra();
-        flowPane = new FlowPane();
+ 
+
         plan.registerObserver(this);
         centerText = text;
         init();
     }
+
+
 
     /**
      * Metoda zaregistruje pozorovatele k hernímu plánu při spuštění nové hry.
@@ -64,40 +63,7 @@ public class PanelBatoh implements Observer{
         list.setItems(data);
         list.setPrefWidth(120);
         
-        if (!hra.konecHry()) {
-            
-            Boolean b = hra.konecHry();
-            
-            
-
-        list.setOnMouseClicked(new EventHandler<MouseEvent>() {
-            @Override
-            public void handle(MouseEvent click) {
-                
-                centerText.setText(String.valueOf(b));
-                int selected = list.getSelectionModel().getSelectedIndex();
-                
-                Map<String, Vec> veci;
-                veci = plan.getBatoh().getVeci(); 
-                
-                String nazev = "";
-                int pomocna = 0;
-                for (String x : veci.keySet()) {
-                   if(pomocna == selected) {
-                       nazev = x;
-                   }
-                   pomocna++;
-                }
-                String prikaz = "zahod " + nazev;
-                
-                String text = plan.getHra().zpracujPrikaz(prikaz);
-                
-                centerText.appendText("\n\n" + prikaz + "\n");
-                centerText.appendText("\n" + text + "\n");
-
-                plan.notifyAllObservers();
-            }
-        });}
+        
         
         
         
@@ -118,10 +84,7 @@ public class PanelBatoh implements Observer{
         }
     }
 
-    public FlowPane getPanel() {
-        return flowPane;
-    }
-    
+
     public ListView<Object> getList() {
         return list;
     }
