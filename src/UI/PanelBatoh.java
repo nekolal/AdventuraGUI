@@ -8,69 +8,61 @@ package UI;
 import java.util.Map;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.event.EventHandler;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextArea;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.FlowPane;
 import logika.HerniPlan;
-import logika.Hra;
-import logika.IHra;
 import logika.Vec;
 import utils.Observer;
 
 /**
  *
  * @author Lukáš
+ * 
+ * Pnale batoh slouží pro zobrazení obsahu batohu na panelu pomocí obrázků a 
+ * možnost vybírat věci kliknutím
  */
 public class PanelBatoh implements Observer{
 
     private HerniPlan plan;
-    
     private ListView<Object> list;
     ObservableList<Object> data;
-    private TextArea centerText;
-    
 
-
-
-    public PanelBatoh(HerniPlan plan, TextArea text) {
+    /**
+     * 
+     * @param plan herní plán, ve kterém je batoh
+     */
+    public PanelBatoh(HerniPlan plan) {
         this.plan = plan;
- 
-
         plan.registerObserver(this);
-        centerText = text;
         init();
     }
-
-
 
     /**
      * Metoda zaregistruje pozorovatele k hernímu plánu při spuštění nové hry.
      *
-     * @param plan
+     * @param plan instance herního plánu
      */
     public void nastaveniHernihoPlanu(HerniPlan plan) {
         plan.registerObserver(this);
         this.update();
     }
 
+    /**
+     * inicializace komponent panelu
+     */
     private void init() {
         list = new ListView<>();
         data = FXCollections.observableArrayList();
         list.setItems(data);
         list.setPrefWidth(120);
-        
-        
-        
-        
-        
-    update();
+        update();
     }
         
-
+    /**
+     * Aktualizace obrázků batohu
+     */
     @Override 
     public void update() {
           
@@ -84,11 +76,18 @@ public class PanelBatoh implements Observer{
         }
     }
 
-
+    /**
+     * @return vrací list věcí v batohu
+     */
     public ListView<Object> getList() {
         return list;
     }
     
+    /**
+     * 
+     * @param plan herní plán, ve kterém je batoh
+     * vatvoření nové instance
+     */
     public void novaHra(HerniPlan plan) {
         this.plan = plan;
         plan.registerObserver(this);

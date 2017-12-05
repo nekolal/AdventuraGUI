@@ -38,8 +38,8 @@ public class Batoh
     //== KONSTRUKTORY A TOVÁRNÍ METODY =========================================
 
     /***************************************************************************
-     * Vytvoření batohu. Batoh je reprezentován HshMapou
-     * 
+     * Vytvoření batohu. Batoh je reprezentován HashMapou
+     * @param herniPlan instance herního plánu
      */
 
     public Batoh(HerniPlan herniPlan)

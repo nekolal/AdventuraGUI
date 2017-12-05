@@ -18,6 +18,7 @@ interface IPrikaz {
      *  příkaz pouzij může mít dva parametry.
      *  
      *  @param parametry počet parametrů závisí na konkrétním příkazu.
+     *  @return parametry
      *  
      */
     public String proved(String... parametry);

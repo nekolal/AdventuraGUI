@@ -13,8 +13,5 @@ import logika.IHra;
  */
 public interface Observer {
     
-    void update();
-    
-    //void novaHra(IHra hra);
-    
+    void update();    
 }

@@ -12,7 +12,8 @@ import logika.HerniPlan;
 import utils.Observer;
 
 /**
- *
+ * Panel Východů lsoužíá pro zobrazení východů z konkrétní místonosi. Východy lze
+ * vybírat kliknutím
  * @author Lukáš
  */
 public class PanelVychodu implements Observer{
@@ -20,12 +21,19 @@ public class PanelVychodu implements Observer{
     ListView<String> list;
     ObservableList<String> data;
     
+    /**
+     * 
+     * @param plan herní plán
+     */
     public PanelVychodu(HerniPlan plan) {
         this.plan = plan;
         plan.registerObserver(this);
         init();
     }
 
+    /**
+     * inicializace
+     */
     private void init() {
         list = new ListView<>();
         data = FXCollections.observableArrayList();
@@ -40,13 +48,17 @@ public class PanelVychodu implements Observer{
         }
     }
 
+    /**
+     * 
+     * @return list vrací list věcí v batohu
+     */
     public ListView<String> getList() {
         return list;
     }
 /**
      * Metoda zaregistruje pozorovatele k hernímu plánu při spuštění nové hry.
      * 
-     * @param plan
+     * @param plan instance herního plánu
      */
     public void nastaveniHernihoPlanu (HerniPlan plan){
         this.plan = plan;
@@ -54,6 +66,9 @@ public class PanelVychodu implements Observer{
         this.update();
     }
 
+    /**
+     * Aktualizace východů z postoru
+     */
     @Override
     public void update() {
         String vychody = plan.getAktualniProstor().seznamVychodu();
@@ -64,6 +79,11 @@ public class PanelVychodu implements Observer{
         }
     }
 
+    /**
+     * 
+     * @param plan herní plán, ve kterém je batoh
+     * vatvoření nové instance
+     */
     public void novaHra(HerniPlan plan) {
         plan.deleteObserver(this);
         this.plan = plan;

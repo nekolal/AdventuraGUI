@@ -27,7 +27,7 @@ public class PrikazPouzij implements IPrikaz
     /***************************************************************************
      * Konstruktor třídy
      * 
-     * @param herniPlan herní plán, ve kterém se budou "používat"věci
+     * @param hPlan herní plán, ve kterém se budou "používat"věci
      */
     public PrikazPouzij(HerniPlan hPlan)
     {
@@ -40,19 +40,19 @@ public class PrikazPouzij implements IPrikaz
      * je v batohu vrátí se "jednou věcí nic nevytvoříš". Pro kombinaci dvou věcí 
      * je uvedeno níže.
      * 
-     * Klády + lijány -> return "Lijány jsou moc dlouhé je potřeba upravit jejich délku"
-     * kapesní_nůž + lijány ->  vytvoří se věc nařezané_lijány
+     * Klády + lijány - return "Lijány jsou moc dlouhé je potřeba upravit jejich délku"
+     * kapesní_nůž + lijány -  vytvoří se věc nařezané_lijány
      *                          nařezané_lijány se vloží do aktuálního prostoru
      *                          return "Nařezal jsi lijány na potřebnou délku"
-     * klády + nařezané_lijány->vytvoří věc vor
+     * klády + nařezané_lijány-vytvoří věc vor
      *                          vor se vloží do prostoru
      *                          return "Kombinuji\n Vytvořil jsi vor, pomocí kterého se můžeš dostat pryč z tohoto ostrova"
-     * kokosový_ořech + ostrý_kámen ->  vytvoří věc rozpůlený_kokosový_ořech
+     * kokosový_ořech + ostrý_kámen -  vytvoří věc rozpůlený_kokosový_ořech
      *                                  rozpůlený_kokosový_ořech se vloží do aktuálního prostoru
      *                                  přidá se zpět do batohu ostrý_kámen
      *                                  return "Kombinuji\n Vytvořil jsi nádobu na vodu z kokosového ořechu."
      *                        
-     * jinak -> return "to by k ničemu nevedlo"
+     * jinak - return "to by k ničemu nevedlo"
      * 
      * Je-li zadána věc, která není v batohu, vrátí se "zadanou věc nemáš u sebe".
      * @param parametry - jako parametry obsahuje název věci(věcí)
@@ -152,7 +152,7 @@ public class PrikazPouzij implements IPrikaz
     /**
      *  Metoda vrací název příkazu (slovo které používá hráč pro jeho vyvolání)
      *  
-     *  @ return nazev prikazu
+     *  @return nazev prikazu
      */
     public String getNazev() {
         return NAZEV;

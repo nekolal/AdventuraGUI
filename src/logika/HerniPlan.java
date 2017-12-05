@@ -20,7 +20,6 @@ public class HerniPlan implements Subject{
 
     private static final String CILOVY_PROSTOR = "moře";
     
-    
     public boolean zemrelNaDehydrataci = false;
     private HerniPlan herniPlan;
     private Hra hra;
@@ -33,6 +32,8 @@ public class HerniPlan implements Subject{
     
     /**
      *  Konstruktor který vytváří jednotlivé prostory a propojuje je pomocí východů.
+     * 
+     * @param hra instance hry
      */
     public HerniPlan(Hra hra) {
         zalozProstoryHry();
@@ -206,20 +207,35 @@ public class HerniPlan implements Subject{
         return batoh;
     }
     
+    /**
+     * Metoda vrací instanci třídy Hry()
+     * @return hra - vrací instanci hra
+     */
     public Hra getHra() {
         return hra;
     }
 
+    /**
+     * zaregistrování observeru
+     * @param observer observer
+     */
     @Override
     public void registerObserver(Observer observer) {
         listObserveru.add(observer);
     }
 
+    /**
+     * smazání observeru
+     * @param observer observer
+     */
     @Override
     public void deleteObserver(Observer observer) {
         listObserveru.remove(observer);
     }
 
+    /**
+     * zavolání observerů
+     */
     @Override
     public void notifyAllObservers() {
         for (Observer listObserveruItem : listObserveru) {

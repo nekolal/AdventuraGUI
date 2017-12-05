@@ -46,7 +46,7 @@ public class PrikazZahod implements IPrikaz
      * Provádí příkaz "zahod" Zkouší zahodit věci. Pokud je věc v batohu zahodí ji, 
      * jinak vypíše chybovou hlášku
      * 
-     * @param parametr - jako parametr obsahuje název věci, které má být zahozena
+     * @param parametry - jako parametr obsahuje název věci, které má být zahozena
      * @return zpráva, kterou vypíše hra hráči
      */
     public String proved(String... parametry)
@@ -99,7 +99,7 @@ public class PrikazZahod implements IPrikaz
     /**
      *  Metoda vrací název příkazu (slovo které používá hráč pro jeho vyvolání)
      *  
-     *  @ return nazev prikazu
+     *  @return nazev prikazu
      */
     @Override
     public String getNazev()

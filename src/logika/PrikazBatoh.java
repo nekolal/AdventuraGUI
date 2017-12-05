@@ -27,7 +27,7 @@ public class PrikazBatoh implements IPrikaz
     /***************************************************************************
      *Kostruktor třídy
      *
-     *@param harniPlan herní plán, ve kterém se budou ve hře "sbírat" věci
+     *@param herniPlan herní plán, ve kterém se budou ve hře "sbírat" věci
      */
     public PrikazBatoh(HerniPlan herniPlan)
     {
@@ -49,7 +49,7 @@ public class PrikazBatoh implements IPrikaz
     /**
      *  Metoda vrací název příkazu (slovo které používá hráč pro jeho vyvolání)
      *  
-     *  @ return nazev prikazu
+     *  @return nazev prikazu
      */
     @Override
     public String getNazev() {

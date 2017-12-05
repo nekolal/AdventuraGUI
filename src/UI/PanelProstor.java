@@ -23,51 +23,50 @@ import utils.Observer;
 /**
  *
  * @author Lukáš
+ * 
+ * Panel prosotr slouží pro zobrazení věcí v prostoru pomocí obrázků a možnost
+ * vybírat věci k sebrání kliknutím
  */
 public class PanelProstor implements Observer{
-    /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 
     private HerniPlan plan;
     private ListView<Object> list;
     ObservableList<Object> data;
-    private TextArea centerText;
-    private IHra hra;
 
-    public PanelProstor(HerniPlan plan, TextArea text) {
+    /**
+     * 
+     * @param plan prostor
+     */
+    public PanelProstor(HerniPlan plan) {
         this.plan = plan;
-        hra = new Hra();
         plan.registerObserver(this);
-        centerText = text;
-
         init();
     }
 
     /**
      * Metoda zaregistruje pozorovatele k hernímu plánu při spuštění nové hry.
      *
-     * @param plan
+     * @param plan instance herního plánu
      */
     public void nastaveniHernihoPlanu(HerniPlan plan) {
-        //this.plan = plan;
         plan.registerObserver(this);
         this.update();
     }
 
+    /**
+     * inicializace komponent panelu
+     */
     private void init() {
-
         list = new ListView<>();
         data = FXCollections.observableArrayList();
         list.setItems(data);
         list.setPrefWidth(120);
-        
-        
         update();
     }
 
+    /**
+     * Aktualizace obrázků prostoru
+     */
     @Override
     public void update() {
 
@@ -81,13 +80,19 @@ public class PanelProstor implements Observer{
         }
     }
     
-    /*
-    * Metoda vrací list.
-    */
+    /**
+     * 
+     * @return vrací list věcí v prostoru
+     */
     public ListView<Object> getList() {
         return list;
     }
 
+    /**
+     * 
+     * @param plan herní plán, ve kterém je batoh
+     * vytvoření nové instance
+     */
     public void novaHra(HerniPlan plan) {
         this.plan = plan;
         plan.registerObserver(this);

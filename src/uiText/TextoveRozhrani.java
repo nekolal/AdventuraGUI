@@ -20,6 +20,7 @@ public class TextoveRozhrani {
 
     /**
      *  Vytváří hru.
+     * @param hra instance hry
      */
     public TextoveRozhrani(IHra hra) {
         this.hra = hra;
